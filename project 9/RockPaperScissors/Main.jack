@@ -1,0 +1,28 @@
+class Main {
+	function void main() {
+		var int userSelection;
+		var int computerSelection;
+		var Array wins;
+		var int winner;
+		var boolean quit;
+
+		let wins = Array.new(2);
+		do Score.printScore(wins);
+		
+		do Arrow.label();
+		while (~quit) {
+			let userSelection = Arrow.getUserInput(userSelection);
+			if (userSelection < 3) {
+				let computerSelection = Computer.getSelection();
+				let winner = Score.findWinner(userSelection, computerSelection);
+
+				do Score.displayWinner(computerSelection, winner);
+				let wins = Score.updateScore(winner, wins);
+				do Score.printScore(wins);
+
+			}else { let quit = true; }
+			do Sys.wait(250);
+		}
+		return;
+	}
+}

@@ -1,0 +1,16 @@
+class Computer {
+	//computer always selects rock since there is no random number generation
+	function int getSelection() {
+		var int selection;
+		let selection = 0;
+		return selection;
+	}
+
+	function String asString(int selection) {
+		var String selectionAsString;
+		if (selection = 0) { let selectionAsString = "rock"; }
+		if (selection = 1) { let selectionAsString = "paper"; }
+		if (selection = 2) { let selectionAsString = "scissors"; }
+		return selectionAsString;
+	}
+}

@@ -1,0 +1,64 @@
+class Score {
+	function int findWinner(int human, int computer) {
+		var int winner;
+
+		if (human = computer) { let winner = 0; } //tie
+		if (human=0) { if (computer = 1) { let winner = 1; }} //computer wins
+		if (human=1) { if (computer = 2) { let winner = 1; }} //computer wins
+		if (human=2) { if (computer = 0) { let winner = 1; }} //computer wins
+		
+		if (computer=0) { if (human = 1) { let winner = 2; }} //human wins
+		if (computer=1) { if (human = 2) { let winner = 2; }} //human wins
+		if (computer=2) { if (human = 0) { let winner = 2; }} //human wins
+
+		return winner;
+	}
+
+
+
+	function void displayWinner(int computerSelection, int winner) {
+		var int i;
+		let computerSelection = Computer.asString(computerSelection);
+		do Output.init();
+		while (i < 9) {
+			do Output.println();
+			let i = i+1;
+		}
+
+		do Output.printString("                 Opponent had ");
+		do Output.printString(computerSelection);
+
+		if (winner = 0) { do Output.printString(". It's a tie!     "); }
+		if (winner = 1) { do Output.printString(". Opponent wins!"); }
+		if (winner = 2) { do Output.printString(". You win!        "); }
+		return;
+	}
+
+
+
+	function Array updateScore(int winner, Array wins) {
+		if (winner = 1) {
+			let wins[0] = wins[0] + 1;
+		}if (winner = 2) {
+			let wins[1] = wins[1] + 1;
+		}
+		return wins;
+	}
+
+
+
+	function void printScore(Array wins) {
+		do Output.init();
+		do Output.printString("                            SCORE");
+
+		do Output.println();
+		do Output.printString("                            Computer: ");
+		do Output.printInt(wins[0]);
+
+		do Output.println();
+		do Output.printString("                            Human: ");
+		do Output.printInt(wins[1]);
+
+		return;
+	}
+}

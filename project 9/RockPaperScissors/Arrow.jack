@@ -1,0 +1,116 @@
+class Arrow {
+	function void draw(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 384);
+		do Memory.poke(memAddress+32, 960);
+		do Memory.poke(memAddress+64, 2016);
+		do Memory.poke(memAddress+96, 4080);
+		do Memory.poke(memAddress+128, 8184);
+		do Memory.poke(memAddress+160, 16380);
+		do Memory.poke(memAddress+192, 32766);
+		do Memory.poke(memAddress+224, -1);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+
+
+
+	function void undraw(int location) {
+		var int memAddress;
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress+0, 0);
+		do Memory.poke(memAddress+32, 0);
+		do Memory.poke(memAddress+64, 0);
+		do Memory.poke(memAddress+96, 0);
+		do Memory.poke(memAddress+128, 0);
+		do Memory.poke(memAddress+160, 0);
+		do Memory.poke(memAddress+192, 0);
+		do Memory.poke(memAddress+224, 0);
+		do Memory.poke(memAddress+256, 0);
+		do Memory.poke(memAddress+288, 0);
+		do Memory.poke(memAddress+320, 0);
+		do Memory.poke(memAddress+352, 0);
+		do Memory.poke(memAddress+384, 0);
+		do Memory.poke(memAddress+416, 0);
+		do Memory.poke(memAddress+448, 0);
+		do Memory.poke(memAddress+480, 0);
+		return;
+	}
+
+
+
+	function void label() {
+		var int i;
+		let i = 0;
+		while (i < 18) {
+			do Output.println();
+			let i = i+1;
+		}
+		do Output.printString("Rock                        ");
+		do Output.printString("Paper                       ");
+		do Output.printString("Scissors");
+		return;
+	}
+
+
+
+	function int getUserInput(int arrowLoc) {
+		var Array arrowScreenPoints;
+		var int moveTo;
+		var int noMove;
+		var int key;
+		var boolean quit;
+
+		let arrowScreenPoints = Array.new(3);
+		let arrowScreenPoints[0] = 7680;
+		let arrowScreenPoints[1] = 7694;
+		let arrowScreenPoints[2] = 7709;
+
+		let moveTo = arrowLoc;
+		do Arrow.draw(arrowScreenPoints[arrowLoc]);
+
+		while (~quit) {
+			let noMove = 0;
+			let key = Keyboard.keyPressed();
+			if (key = 130) { //left arrow
+				if (arrowLoc > 0) { let moveTo = arrowLoc - 1; }
+			}
+			if (key = 132) { //right arrow
+				if (arrowLoc < 2) { let moveTo = arrowLoc + 1; }
+			}
+			if (key = 128) { let quit = true; } //enter key
+			if (key = 81) { //q key
+				let quit = true;
+				let arrowLoc = 3;
+				let noMove = 1;	
+			}
+
+
+			if (moveTo = arrowLoc) {
+				let noMove = 1;
+			}if (noMove = 0) {
+				do Arrow.undraw(arrowScreenPoints[arrowLoc]);
+				let arrowLoc = moveTo;
+				do Arrow.draw(arrowScreenPoints[arrowLoc]);
+				do Sys.wait(125);
+			}
+		}
+		do Arrow.undraw(arrowScreenPoints[arrowLoc]);
+		return arrowLoc;
+	}
+
+
+
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+}
