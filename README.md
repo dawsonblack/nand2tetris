@@ -18,3 +18,5 @@ Project 7 - Writing a basic Virtual Machine translator
 Project 8 - Expanding the VM Translator to allow for functions and branching
 
 Project 9 - Writing a basic program in the Jack programming language
+
+Project 10 - Writing a tokenizer/analyzer for Jack code
