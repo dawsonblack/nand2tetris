@@ -22,3 +22,5 @@ Project 9 - Writing a basic program in the Jack programming language
 Project 10 - Writing a Jack code tokenizer/proof-of-concept analyzer
 
 Project 11 - Writing a Jack compiler
+
+Project 12 - Writing an operating system for the HACK computer
